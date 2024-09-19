@@ -1,5 +1,6 @@
 import Image from "next/image";
 import style from "./person.module.css";
+
 interface IPersonParams {
   id: string;
 }
@@ -30,13 +31,19 @@ interface IPersonType {
   about: string[];
   netWorth: number;
 }
+export async function generateMetadata({params}: {params: IPersonParams}) {
+  return {
+    title: params.id.replace("-", " ").toUpperCase(),
+  };
+}
+
 export default async function Person({params}: {params: IPersonParams}) {
   const data: IPersonType = await (
     await fetch(
       `https://billions-api.nomadcoders.workers.dev/person/${params.id}`
     )
   ).json();
-  console.log(data);
+
   return (
     <div className={style.personCont}>
       <section>

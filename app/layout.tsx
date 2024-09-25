@@ -1,11 +1,4 @@
-import type {Metadata} from "next";
-
 import "./globals.css";
-
-export const metadata: Metadata = {
-  title: {default: "HOME | Billionaire", template: "%s | Billionaire"},
-  description: "Billionaire Person ",
-};
 
 export default function RootLayout({
   children,
@@ -15,16 +8,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <main
-          style={{
-            margin: "0 auto",
-            display: "flex",
-            justifyContent: "center",
-            padding: 40,
-          }}
-        >
-          {children}
-        </main>
+        <main>{children}</main>
       </body>
     </html>
   );

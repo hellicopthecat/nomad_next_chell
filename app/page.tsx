@@ -94,13 +94,14 @@ export default function Home() {
             name="password"
             type="text"
             placeholder="Password"
-            className={`pl-10 py-2 border rounded-full w-full focus:ring-2 focus:ring-offset-4 ${
+            className={`pl-10 py-2 border rounded-full w-full 
+            focus:ring-2 focus:ring-offset-4 invalid:focus:ring-red-500  ${
               state.password !== ""
                 ? "focus:ring-red-500"
-                : "focus:ring-gray-200"
+                : "focus:ring-gray-200 "
             }
-          invalid:focus:ring-red-500 focus:ring-gray-200
              outline-none`}
+            required
           />
         </div>
         {state.password && (

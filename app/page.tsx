@@ -1,13 +1,11 @@
 "use client";
 
 import {useFormState} from "react-dom";
-import formAction from "./actions";
+import formAction, {IFormActionProps} from "./actions";
 import LoginBtn from "@/components/button";
-const initalState = {
+const initalState: IFormActionProps = {
   success: null,
-  email: "",
-  username: "",
-  password: "",
+  errMsg: undefined,
 };
 export default function Home() {
   const [state, action] = useFormState(formAction, initalState);
@@ -38,10 +36,24 @@ export default function Home() {
             name="email"
             type="text"
             placeholder="Email"
-            className="pl-10 py-2 border rounded-full w-full focus:ring-2 focus:ring-offset-4 focus:ring-gray-200 outline-none"
+            className={`pl-10 py-2 border rounded-full w-full focus:ring-2 focus:ring-offset-4 focus:ring-gray-200 outline-none
+                  invalid:focus:ring-red-500 invalid:ring-red-500
+              ${
+                state.errMsg?.fieldErrors.email &&
+                state.errMsg.fieldErrors.email.length > 0
+                  ? "focus:ring-red-500"
+                  : "focus:ring-gray-200 "
+              }
+              `}
+            required
           />
         </div>
-        {state.email && <span className="text-red-400">{state.email}</span>}
+        {state?.errMsg?.fieldErrors &&
+          state.errMsg.fieldErrors.email?.map((err, index) => (
+            <span key={index} className="text-red-400">
+              {err}
+            </span>
+          ))}
         <div className="flex items-center relative">
           <label htmlFor="username" className="absolute left-2">
             <svg
@@ -65,12 +77,24 @@ export default function Home() {
             name="username"
             type="text"
             placeholder="UserName"
-            className="pl-10 py-2 border rounded-full w-full focus:ring-2 focus:ring-offset-4 focus:ring-gray-200 outline-none"
+            className={`pl-10 py-2 border rounded-full w-full focus:ring-2 focus:ring-offset-4 focus:ring-gray-200 outline-none
+              invalid:focus:ring-red-500 invalid:ring-red-500
+              ${
+                state.errMsg?.fieldErrors.username &&
+                state.errMsg.fieldErrors.username.length > 0
+                  ? "focus:ring-red-500"
+                  : "focus:ring-gray-200 "
+              }
+              `}
+            required
           />
         </div>
-        {state.username && (
-          <span className="text-red-400">{state.username}</span>
-        )}
+        {state.errMsg?.fieldErrors &&
+          state.errMsg.fieldErrors.username?.map((err, index) => (
+            <span key={index} className="text-red-400">
+              {err}
+            </span>
+          ))}
         <div className="flex items-center relative">
           <label htmlFor="password" className="absolute left-2">
             <svg
@@ -95,8 +119,9 @@ export default function Home() {
             type="text"
             placeholder="Password"
             className={`pl-10 py-2 border rounded-full w-full 
-            focus:ring-2 focus:ring-offset-4 invalid:focus:ring-red-500  ${
-              state.password !== ""
+            focus:ring-2 focus:ring-offset-4 invalid:focus:ring-red-500 invalid:ring-red-500 ${
+              state.errMsg?.fieldErrors.password &&
+              state.errMsg?.fieldErrors.password.length > 0
                 ? "focus:ring-red-500"
                 : "focus:ring-gray-200 "
             }
@@ -104,12 +129,15 @@ export default function Home() {
             required
           />
         </div>
-        {state.password && (
-          <span className="text-red-400">{state.password}</span>
-        )}
+        {state.errMsg?.fieldErrors &&
+          state.errMsg?.fieldErrors.password?.map((err, index) => (
+            <span key={index} className="text-red-400">
+              {err}
+            </span>
+          ))}
         <LoginBtn />
 
-        {state.success && (
+        {state?.success && (
           <div className="flex justify-center items-center gap-3 bg-green-300 w-full py-3 rounded-lg">
             <svg
               className="fill-green-500 size-5"

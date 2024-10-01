@@ -1,6 +1,9 @@
+"use client";
 import {useFormStatus} from "react-dom";
-
-export default function LoginBtn() {
+interface IAuthBtnProps {
+  btnTxt: string;
+}
+export default function AuthBtn({btnTxt}: IAuthBtnProps) {
   const {pending} = useFormStatus();
   return (
     <button
@@ -10,7 +13,7 @@ export default function LoginBtn() {
       disabled:text-white
     rounded-full"
     >
-      {pending ? "Loading..." : "Log In"}
+      {pending ? "Loading..." : btnTxt}
     </button>
   );
 }

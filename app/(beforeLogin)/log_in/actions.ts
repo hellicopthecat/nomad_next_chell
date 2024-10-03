@@ -85,5 +85,5 @@ export default async function loginAction(
       },
     } as ILoginActionProps;
   }
-  redirect("/profile");
+  redirect("/");
 }

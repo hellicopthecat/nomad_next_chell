@@ -70,7 +70,7 @@ export default async function formAction(prevState: any, formData: FormData) {
     }
   } catch (e) {
     console.log(e);
-    redirect("/");
+    redirect("/log_in");
   }
-  redirect("/profile");
+  redirect("/");
 }

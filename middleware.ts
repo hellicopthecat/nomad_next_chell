@@ -4,7 +4,6 @@ interface IPublicUrl {
   [key: string]: boolean;
 }
 const publicUrl: IPublicUrl = {
-  "/": true,
   "/log_in": true,
   "/create_account": true,
 };
@@ -14,7 +13,7 @@ export async function middleware(request: NextRequest) {
 
   if (!session.id) {
     if (!existsUrl) {
-      return NextResponse.redirect(new URL("/", request.url));
+      return NextResponse.redirect(new URL("/log_in", request.url));
     }
   } else {
     if (existsUrl) {

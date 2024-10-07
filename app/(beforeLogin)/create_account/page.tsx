@@ -2,7 +2,7 @@
 
 import {useFormState} from "react-dom";
 import formAction from "./actions";
-import AuthBtn from "@/components/auth/authButton";
+import FormBtn from "@/components/formButton";
 import {EnvelopeIcon, UserIcon} from "@heroicons/react/16/solid";
 import SharedInput from "@/components/SharedInput";
 import {KeyIcon} from "@heroicons/react/16/solid";
@@ -39,7 +39,7 @@ export default function Login() {
           errMsg={state?.fieldErrors.password || []}
           required
         />
-        <AuthBtn btnTxt="Create Account" />
+        <FormBtn btnTxt="Create Account" />
       </form>
       <div>
         <p className="text-white">

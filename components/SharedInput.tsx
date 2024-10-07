@@ -29,7 +29,7 @@ export default function SharedInput({
           name={name}
           type={type}
           placeholder={placeholder}
-          className={`pl-10 py-2 border rounded-full w-full focus:ring-2 focus:ring-offset-4 focus:ring-gray-200 outline-none
+          className={`text-black pl-10 py-2 border rounded-full w-full focus:ring-2 focus:ring-offset-4 focus:ring-gray-200 outline-none
             invalid:focus:ring-red-500 invalid:ring-red-500 ${className}
             ${errMsg.length > 0 ? "focus:ring-red-500" : "focus:ring-gray-200 "}
             `}

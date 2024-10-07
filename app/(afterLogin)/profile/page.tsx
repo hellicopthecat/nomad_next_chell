@@ -1,7 +1,7 @@
 import client from "@/libs/client";
 import getSession from "@/libs/session";
 
-export const userData = async () => {
+const userData = async () => {
   const session = await getSession();
   const user = await client.user.findUnique({
     where: {id: session.id},

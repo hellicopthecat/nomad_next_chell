@@ -1,11 +1,12 @@
 "use client";
-import AuthBtn from "@/components/auth/authButton";
+
 import AuthLayout from "@/components/auth/authLayout";
 import SharedInput from "@/components/SharedInput";
 import {EnvelopeIcon, KeyIcon} from "@heroicons/react/16/solid";
 import Link from "next/link";
 import {useFormState} from "react-dom";
 import loginAction from "./actions";
+import FormBtn from "@/components/formButton";
 const initializeState = {
   errMsg: undefined,
 };
@@ -31,7 +32,7 @@ export default function Login() {
           errMsg={state.errMsg?.fieldErrors.password || []}
           required
         />
-        <AuthBtn btnTxt="Log in" />
+        <FormBtn btnTxt="Log in" />
       </form>
       <p className="text-white">
         Don&apos;t have a Account?{" "}

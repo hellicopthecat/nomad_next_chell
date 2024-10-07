@@ -1,7 +1,7 @@
 "use server";
 
 import client from "@/libs/client";
-import {z} from "zod";
+import {typeToFlattenedError, z} from "zod";
 import bcrypt from "bcrypt";
 import getSession from "@/libs/session";
 import {redirect} from "next/navigation";
@@ -44,7 +44,15 @@ const userModelSchema = z
     }
   });
 
-export default async function formAction(prevState: any, formData: FormData) {
+interface IFlattenErrorTypes {
+  email?: string[];
+  username?: string[];
+  password?: string[];
+}
+export default async function formAction(
+  state: null | typeToFlattenedError<IFlattenErrorTypes>,
+  formData: FormData
+) {
   const data = {
     email: formData.get("email"),
     username: formData.get("username"),

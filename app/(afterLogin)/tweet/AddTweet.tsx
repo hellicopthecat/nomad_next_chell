@@ -6,6 +6,7 @@ import FormBtn from "@/components/formButton";
 
 export default function AddTweet() {
   const [state, formAction] = useFormState(addTweetAction, null);
+
   return (
     <form action={formAction} className="flex items-center gap-5">
       <div>

@@ -19,7 +19,15 @@ export default function TweetList({initialTweet}: IInitialTweetList) {
     if (initial.length !== 0) {
       setPage((prev) => prev + 1);
       const newData = await tweetData(page);
-      setInitial((prev) => [...prev, ...newData]);
+      const formatData = newData.map((tweet) => ({
+        ...tweet,
+        user: {
+          id: tweet.user.id,
+          username: tweet.user.username,
+        },
+        Like: tweet.Like || [],
+      }));
+      setInitial((prev) => [...prev, ...formatData]);
     } else {
       setLastPage(true);
     }
